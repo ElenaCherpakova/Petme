@@ -10,12 +10,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Client {
-  id           Int     @id @default(autoincrement())
-  first_name   String  @db.VarChar(50)
-  last_name    String  @db.VarChar(50)
-  email        String  @db.VarChar(255)
-  password     String  @db.VarChar(255)
-  phone_number String? @db.VarChar(50)
-  address      String? @db.VarChar(100)
+model Breeder {
+  id           String     @id @default(uuid())
+  firstName    String
+  lastName     String
+  email        String
+  password     String
+  phoneNumber  String
+  address      String
+  profileImage String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  Pet          Pet[]
+  Category     Category[]
+}
+
+model Customer {
+  id           String @id @default(uuid())
+  firstName    String
+  lastName     String
+  email        String
+  password     String
+  phoneNumber  String
+  address      String
+  profileImage String
+}
+
+model Pet {
+  id           String     @id @default(uuid())
+  name         String
+  dateOfBirth  Int
+  description  String
+  category     String
+  profileImage String[]
+  price        Int
+  breeder      Breeder    @relation(fields: [breederId], references: [id])
+  breederId    String
+  Category     Category[]
+}
+
+model Category {
+  id        String  @id @default(uuid())
+  breeder   Breeder @relation(fields: [breederId], references: [id])
+  breederId String
+  breedType String
+  pet       Pet     @relation(fields: [petId], references: [id])
+  petId     String
 }

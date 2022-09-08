@@ -2,7 +2,11 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  //write queries here
+  const breeder = await prisma.breeder.create({
+    data: { firstName: 'John Doe' },
+  });
+
+  console.log(breeder);
 }
 
 main()
