@@ -5,18 +5,17 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model clients {
-  id                 Int                  @id @default(autoincrement())
-  first_name         String               @db.VarChar(50)
-  last_name          String               @db.VarChar(50)
-  email              String               @db.VarChar(255)
-  password           String               @db.VarChar(255)
-  phone_number       String?              @db.VarChar(50)
-  address            String?              @db.VarChar(100)  
+model Client {
+  id           Int     @id @default(autoincrement())
+  first_name   String  @db.VarChar(50)
+  last_name    String  @db.VarChar(50)
+  email        String  @db.VarChar(255)
+  password     String  @db.VarChar(255)
+  phone_number String? @db.VarChar(50)
+  address      String? @db.VarChar(100)
 }
