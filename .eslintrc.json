@@ -1,6 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "linebreak-style": 0
+    "linebreak-style": ["error", "windows"]
   }
 }
