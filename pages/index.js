@@ -10,7 +10,7 @@ export default function Home({ pet }) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/Pets/pets");
+  const res = await fetch(`http://localhost:3000/api/Pets/pets/`);
   const { pet } = await res.json();
 
   return {
@@ -19,3 +19,16 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+// export const getStaticProps = async (context) => {
+//   const res = await fetch(
+//     `http://localhost:3000/api/Pets/pets/${context.params.id}`
+//   );
+//   const { pet } = await res.json();
+
+//   return {
+//     props: {
+//       pet,
+//     },
+//   };
+// };
