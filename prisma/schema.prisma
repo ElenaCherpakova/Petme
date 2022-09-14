@@ -11,7 +11,9 @@ datasource db {
 }
 
 model Breeder {
-  id           String     @id @default(uuid())
+
+  id           Int     @id @default(autoincrement())
+
   firstName    String
   lastName     String
   email        String
@@ -20,13 +22,14 @@ model Breeder {
   address      String
   profileImage String
   createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  Pet          Pet[]
-  Category     Category[]
+
+  pets          Pet[]
+  sales         Sale[]
 }
 
 model Customer {
-  id           String @id @default(uuid())
+  id           Int @id @default(autoincrement())
+
   firstName    String
   lastName     String
   email        String
@@ -34,26 +37,43 @@ model Customer {
   phoneNumber  String
   address      String
   profileImage String
+  sale Sale[]
 }
 
 model Pet {
-  id           String     @id @default(uuid())
+  id           Int     @id @default(autoincrement())
   name         String
-  dateOfBirth  Int
+  dateOfBirth  String
   description  String
-  category     String
-  profileImage String[]
+  profileImage String
   price        Int
-  breeder      Breeder    @relation(fields: [breederId], references: [id])
-  breederId    String
-  Category     Category[]
+  gender       String
+  breeder     Breeder     @relation(fields: [breederId], references: [id])
+  breederId Int
+  sale Sale[]
+  petCategory PetCategory[]
 }
 
-model Category {
-  id        String  @id @default(uuid())
-  breeder   Breeder @relation(fields: [breederId], references: [id])
-  breederId String
-  breedType String
-  pet       Pet     @relation(fields: [petId], references: [id])
-  petId     String
+
+model PetCategory {
+  id Int @id @default(autoincrement())
+  pureBreed Boolean
+  breedName String
+  categoryName String
+  pet        Pet     @relation(fields: [petId], references: [id])
+  petId Int
+}
+
+model Sale {
+  id           Int     @id @default(autoincrement())
+  salesDate    String
+  breeder    Breeder     @relation(fields: [breederId], references:[id])
+  breederId Int
+  customer   Customer     @relation(fields: [customerId], references: [id])
+  customerId Int
+  pet        Pet     @relation(fields: [petId], references: [id])
+  petId Int
+  paymentStatus String
+  amountPayed Int
+  refNumber Int
 }
