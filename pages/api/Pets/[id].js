@@ -1,4 +1,4 @@
-import { prisma } from "../../../lib/prisma";
+import { prisma } from '../../../lib/prisma';
 
 export default async function handler({ query: { id } }, res) {
   const filtered = await prisma.Pet.findUnique({
