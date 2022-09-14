@@ -37,16 +37,16 @@ model Customer {
 }
 
 model Pet {
-  id           String     @id @default(uuid())
+  id           String   @id @default(uuid())
   name         String
   dateOfBirth  Int
   description  String
   category     String
   profileImage String[]
   price        Int
-  breeder      Breeder    @relation(fields: [breederId], references: [id])
+  breeder      Breeder  @relation(fields: [breederId], references: [id])
   breederId    String
-  Category     Category[]
+  Category Category[]
 }
 
 model Category {
