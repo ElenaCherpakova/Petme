@@ -13,15 +13,24 @@
     "@prisma/client": "^4.3.1",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "^3.1.8"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.8",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
+<<<<<<< HEAD
     "prisma": "4.3.1"
   },
   "prisma": {
     "seed": "node ./prisma/seed.js"
+=======
+    "postcss": "^8.4.16",
+    "prisma": "^4.3.1",
+    "tailwindcss": "^3.1.8"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+>>>>>>> 87cbed02268a3fdf7594327923c856064c774621
   }
 }
