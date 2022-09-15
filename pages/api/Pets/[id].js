@@ -6,6 +6,6 @@ export default async function handler({ query: { id } }, res) {
       id: Number(id),
     },
   });
-  console.log(filtered);
   res.status(200).json(filtered);
+  return prisma.$disconnect();
 }

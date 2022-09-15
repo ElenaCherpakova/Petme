@@ -12,10 +12,6 @@ const pet = ({ pet }) => {
         <p>{pet.gender}</p>
         <p>{pet.price}</p>
       </div>
-
-      <div className="flex justify-center bg-slate-300 w-1/2 mx-auto p-6 rounded-md">
-        <Link href="/">Go Back</Link>
-      </div>
     </div>
   );
 };
@@ -24,13 +20,14 @@ export default pet;
 
 export const getServerSideProps = async (context) => {
   const res = await fetch(
-    `http://localhost:3000/api/Pets/${context.params.id}`
+    `http://localhost:3000/api/pets/${context.params.id}`
   );
   const pet = await res.json(res);
-
   return {
     props: {
       pet,
     },
   };
 };
+
+//
