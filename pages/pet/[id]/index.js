@@ -1,37 +1,34 @@
-import React from 'react';
-import Link from 'next/link';
-
-const pet = ({ pet }) => {
+import PetItem from '../../../components/PetItem';
+import Navbar from '../../../components/Navbar/Navbar';
+export default function Home({ pet }) {
   return (
-    <div className='bg-yellow-600 rounded-md hover:cursor-pointer shadow-lg container mx-auto my-4'>
-      <div className='bg-blue-500 p-8 rounded-md'>Picture</div>
-      <div className='p-5'>
-        <h3>{pet.name}</h3>
-        <p>{pet.description}</p>
-        <p>{pet.dateOfBirth}</p>
-        <p>{pet.gender}</p>
-        <p>{pet.price}</p>
-      </div>
-      <Link href='/'>
-        <div className='flex justify-center bg-slate-300 w-1/2 mx-auto p-6 rounded-md'>
-          Go Back
-        </div>
-      </Link>
+    <div className='container mx-auto'>
+      <Navbar />
+      <PetItem pets={pet} />
     </div>
   );
-};
+}
 
-export default pet;
-
-export const getServerSideProps = async (context) => {
-  const res = await fetch(
-    `http://localhost:3000/api/Pets/${context.params.id}`,
-  );
-  const pet = await res.json(res);
-
+export const getStaticProps = async () => {
+  const res = await fetch(`http://localhost:3000/api/pets/pets/`);
+  const { pet } = await res.json();
+  // console.log(pet);
   return {
     props: {
       pet,
     },
   };
 };
+
+// export const getStaticProps = async (context) => {
+//   const res = await fetch(
+//     `http://localhost:3000/api/Pets/pets/${context.params.id}`
+//   );
+//   const { pet } = await res.json();
+
+//   return {
+//     props: {
+//       pet,
+//     },
+//   };
+// };

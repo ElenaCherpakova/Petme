@@ -1,10 +1,10 @@
-import PetList from "../components/BreederCard/PetList";
-import Navbar from "../components//Navbar/Navbar";
+import Navbar from '../components/Navbar/Navbar';
+import PetItem from '../components/BreederCard/PetItem';
 export default function Home({ pet }) {
   return (
-    <div className="container mx-auto">
+    <div className='container mx-auto'>
       <Navbar />
-      <PetList pets={pet} />
+      <PetItem pets={pet} />
     </div>
   );
 }
