@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PetList from "./PetList";
 const PetItem = ({ pets }) => {
+  // console.log(pets);
   return (
     <PetList>
       {pets.length === 0 ? (

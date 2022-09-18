@@ -9,6 +9,7 @@ export default async function handler(req, res) {
       petCategory: true,
     },
   });
+  console.log(getCategoryPets);
 
   const filterPetCategory = getCategoryPets.filter(
     (category) => category.petCategory[0].categoryName === id

@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ onClickCategoryName }) => {
   const categories = [
-    "All",
     "Dog",
     "Cat",
     "Rabbit",
@@ -13,23 +13,18 @@ const Navbar = () => {
     "Lizard",
     "Fish",
   ];
-
-  const clickHandler = () => {
-    console.log("Clicked");
-  };
+  // onClickCategoryName(setName());
 
   return (
     <div className="flex gap-4 my-4">
       {categories.map((category) => (
-        <Link key={category} href="category/[id]" as={`category/${category}`}>
-          <div
-            onClick={clickHandler}
-            key={category}
-            className="bg-green-600 p-6 rounded-md hover:cursor-pointer"
-          >
-            {category}
-          </div>
-        </Link>
+        <div
+          onClick={() => onClickCategoryName(category)}
+          key={category}
+          className="bg-green-600 p-6 rounded-md hover:cursor-pointer"
+        >
+          {category}
+        </div>
       ))}
     </div>
   );
