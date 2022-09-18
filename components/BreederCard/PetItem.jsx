@@ -6,7 +6,7 @@ const PetItem = ({ pets }) => {
   return (
     <PetList>
       {pets.length === 0 ? (
-        <h1>No Data for now</h1>
+        <h1>No Data!! Please Add Some</h1>
       ) : (
         pets.map((pet) => {
           return (
@@ -19,7 +19,7 @@ const PetItem = ({ pets }) => {
                     <p>{pet.description}</p>
                     <p>$Price: {pet.price}</p>
                     <p>{pet.gender}</p>
-                    <p>{pet.description}</p>
+                    <p>Category: {pet.petCategory[0].categoryName}</p>
                   </div>
                 </div>
               </a>
