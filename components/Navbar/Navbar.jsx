@@ -1,12 +1,11 @@
-// import Link from "next/link";
 import {
   GiCat,
   GiSittingDog,
-  GiRabbit, 
-  GiHorseHead, 
-  GiChicken, 
-  GiPig, 
-  GiSeaTurtle, 
+  GiRabbit,
+  GiHorseHead,
+  GiChicken,
+  GiPig,
+  GiSeaTurtle,
   GiLizardTongue,
   GiTropicalFish
 } from "react-icons/gi";
@@ -28,11 +27,19 @@ const categories = [
 const Navbar = ({ onClickCategoryName }) => {
 
   return (
-    <div className="flex gap-4 my-4">
-      {categories.map(({ id, label, icon }) => {
-        return <button onClick={() => onClickCategoryName(label)} key={id} className="bg-blue-100 p-6 rounded-md hover:cursor-pointer"><span>{icon}</span>{label}</button>
+    <div className="text-[#568b92] px-10 flex justify-between items-center">
+      <div className="flex items-center space-x-20">
+        {categories.map(({ id, label, icon }) => {
+          return <div onClick={() => onClickCategoryName(label)} key={id} >
+            <div className="flex flex-col justify-between items-center p-6 rounded-lg hover:cursor-pointer hover:text-[#dbfaff] hover:bg-[#568b92]">
+              <span className="h-6 w-6">{icon}</span>
+              <p className="text-sm font-light">{label}</p>
+            </div>
+          </div>
+        })}
+      </div>
 
-      })}
+
     </div>
   );
 };
