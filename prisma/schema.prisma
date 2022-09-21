@@ -14,7 +14,7 @@ model Breeder {
   id           Int      @id @default(autoincrement())
   firstName    String
   lastName     String
-  email        String
+  email        String   @unique
   password     String
   phoneNumber  String
   address      String
@@ -22,18 +22,24 @@ model Breeder {
   createdAt    DateTime @default(now())
   pets         Pet[]
   sales        Sale[]
+  reviews      Review[]
+
+  @@unique([firstName, lastName, email, phoneNumber, address])
 }
 
 model Customer {
-  id           Int    @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   firstName    String
   lastName     String
-  email        String
+  email        String   @unique
   password     String
   phoneNumber  String
   address      String
   profileImage String
   sale         Sale[]
+  reviews      Review[]
+
+  @@unique([firstName, lastName, phoneNumber, address])
 }
 
 model Pet {
@@ -61,7 +67,7 @@ model PetCategory {
 
 model Sale {
   id            Int      @id @default(autoincrement())
-  salesDate     String
+  salesDate     DateTime @default(now())
   breeder       Breeder  @relation(fields: [breederId], references: [id])
   breederId     Int
   customer      Customer @relation(fields: [customerId], references: [id])
@@ -70,5 +76,17 @@ model Sale {
   petId         Int
   paymentStatus String
   amountPayed   Int
-  refNumber     Int
+  refNumber     Int      @unique
+}
+
+model Review {
+  id         Int      @id @default(autoincrement())
+  rating     Decimal
+  review     String   @db.VarChar(255)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  breeder    Breeder  @relation(fields: [breederId], references: [id])
+  breederId  Int
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId Int
 }

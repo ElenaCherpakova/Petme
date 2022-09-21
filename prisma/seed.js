@@ -2,12 +2,8 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.Breeder.deleteMany();
-  await prisma.Sale.deleteMany();
-  await prisma.Customer.deleteMany();
-  await prisma.Pet.deleteMany();
-  await prisma.PetCategory.deleteMany();
-  const breeder = await prisma.Breeder.createMany({
+  // await prisma.breeder.deleteMany();
+  const breeder = await prisma.breeder.create({
     data: {
       firstName: 'Tom',
       lastName: 'Bolt',
@@ -19,7 +15,7 @@ async function main() {
     },
   });
 
-  const pet = await prisma.Pet.createMany({
+  const pet = await prisma.pet.create({
     data: {
       name: 'Alex',
       dateOfBirth: 'November 23, 2019',
@@ -31,7 +27,7 @@ async function main() {
     },
   });
 
-  const customer = await prisma.Customer.create({
+  const customer = await prisma.customer.create({
     data: {
       firstName: 'Elena',
       lastName: 'Cherpakova',
@@ -43,7 +39,7 @@ async function main() {
     },
   });
 
-  const petCategory = await prisma.PetCategory.createMany({
+  const petCategory = await prisma.petCategory.create({
     data: {
       pureBreed: false,
       breedName: 'Poodle, shitzu',
@@ -52,9 +48,8 @@ async function main() {
     },
   });
 
-  const sale = await prisma.Sale.createMany({
+  const sale = await prisma.sale.create({
     data: {
-      salesDate: 'April 12, 2022',
       breederId: 1,
       customerId: 1,
       petId: 1,
@@ -63,11 +58,22 @@ async function main() {
       refNumber: 123123,
     },
   });
+
+  const review = await prisma.review.create({
+    data: {
+      rating: 5,
+      review: 'Great breeder',
+      breederId: 1,
+      customerId: 1,
+    },
+  });
+
+  console.log({ breeder, pet, customer, petCategory, sale, review });
 }
 
 main()
   .catch((e) => {
-    console.error(e);
+    console.error(e.message);
     process.exit(1);
   })
   .finally(async () => {
